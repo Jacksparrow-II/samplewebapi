@@ -13,6 +13,7 @@ namespace samplewebapi.Controllers
     [ApiController]
     public class ListempController : ControllerBase
     {
+        //api
         [EnableCors("AllowAllHeaders")]
         [HttpGet("GetEmployees")]
         public List<Employee> GetEmployees()
