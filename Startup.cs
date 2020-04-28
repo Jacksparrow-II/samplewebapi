@@ -18,17 +18,24 @@ namespace samplewebapi
 
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.AddCors(options =>
+            //{
+            //options.AddPolicy(MyAllowSpecificOrigins,
+            //                  builder =>
+            //                  {
+            //                      builder.WithOrigins("http://localhost:56880/api/Listemp",
+            //                                          "http://localhost:56880/api/Listemp/GetEmployees")
+            //                                          .AllowAnyHeader()
+            //                                          .AllowAnyMethod();
+            //                  });
+
+
             services.AddCors(options =>
             {
-                options.AddPolicy(MyAllowSpecificOrigins,
-                                  builder =>
-                                  {
-                                      builder.WithOrigins("http://localhost:56880/api/Listemp",
-                                                          "http://localhost:56880/api/Listemp/GetEmployees")
-                                                          .AllowAnyHeader()
-                                                          .AllowAnyMethod();
-                                  });
+                options.AddPolicy("AllowMyOrigin",
+                builder => builder.WithOrigins("http://localhost:4200"));
             });
+            //  });
 
             services.AddControllers();
         }
@@ -44,7 +51,8 @@ namespace samplewebapi
             app.UseStaticFiles();
             app.UseRouting();
 
-            app.UseCors(MyAllowSpecificOrigins);
+
+            app.UseCors();
 
             app.UseAuthorization();
 

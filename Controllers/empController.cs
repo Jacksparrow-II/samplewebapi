@@ -11,10 +11,11 @@ namespace samplewebapi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ListempController : ControllerBase
+    [EnableCors("AllowMyOrigin")]
+    
+    public class empController : ControllerBase
     {
-        //api
-        [EnableCors("AllowAllHeaders")]
+        //api        
         [HttpGet("GetEmployees")]
         public List<Employee> GetEmployees()
         {
